@@ -1,0 +1,3 @@
+entity-packages: com.medtreehealth.ocs.domain
+transactional-packages: com.medtreehealth.ocs.domain
+querybean-packages: com.medtreehealth.ocs.domain
