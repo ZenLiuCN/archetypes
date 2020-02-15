@@ -9,7 +9,7 @@
             <directory>documents</directory>
             <includes>
                 <include>**/*.</include>
-                <include>**/*.name</include>
+                <include>**/*.**</include>
             </includes>
         </fileSet>
         <fileSet encoding="UTF-8">
@@ -22,6 +22,13 @@
     <modules>
         <module id="core" dir="core" name="core">
             <fileSets>
+                <fileSet encoding="UTF-8">
+                    <directory>documents</directory>
+                    <includes>
+                        <include>**/*.</include>
+                        <include>**/*.**</include>
+                    </includes>
+                </fileSet>
                 <fileSet filtered="true" encoding="UTF-8">
                     <directory>src/main/resources</directory>
                     <includes>
@@ -50,6 +57,13 @@
         </module>
         <module id="app" dir="app" name="app">
             <fileSets>
+                <fileSet encoding="UTF-8">
+                    <directory>documents</directory>
+                    <includes>
+                        <include>**/*.</include>
+                        <include>**/*.**</include>
+                    </includes>
+                </fileSet>
                 <fileSet  filtered="true" encoding="UTF-8">
                     <directory>src/main/resources</directory>
                     <includes>
@@ -81,10 +95,24 @@
         </module>
         <module id="infrastructure" dir="infrastructure" name="infrastructure">
             <fileSets>
+                <fileSet encoding="UTF-8">
+                    <directory>documents</directory>
+                    <includes>
+                        <include>**/*.</include>
+                        <include>**/*.**</include>
+                    </includes>
+                </fileSet>
             </fileSets>
             <modules>
                 <module id="infrastructure-example" dir="example" name="infrastructure-example">
                     <fileSets>
+                        <fileSet encoding="UTF-8">
+                            <directory>documents</directory>
+                            <includes>
+                                <include>**/*.</include>
+                                <include>**/*.**</include>
+                            </includes>
+                        </fileSet>
                         <fileSet  filtered="true" encoding="UTF-8">
                             <directory>src/main/resources</directory>
                             <includes>

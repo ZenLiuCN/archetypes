@@ -6,6 +6,7 @@ import cn.zenliu.ktor.features.datasource.*
 import cn.zenliu.ktor.features.ebean.*
 import ${package}.app.api.*
 import ${package}.app.support.infra.*
+import ${package}.app.service.*
 import io.ktor.application.*
 import io.ktor.auth.*
 import io.ktor.features.*
@@ -58,10 +59,9 @@ fun Application.main() {
 	//region Token Authentication
 	install(Auth)
 	install(Authentication) {
-		token(name = "patient") {
+		token(name = "user") {
 			validate { tk ->
-				//AuthService.validatePatientToken(tk) how to validate a token
-				null
+				AuthService.validateToken(tk.token)//how to validate a token
 			}
 		}
 	}

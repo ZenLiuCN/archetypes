@@ -1,7 +1,7 @@
 package ${package}
 
 
-import com.fasterxml.jackson.databind.*
+
 import org.junit.jupiter.api.*
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation::class)
