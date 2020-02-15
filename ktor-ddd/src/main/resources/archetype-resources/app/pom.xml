@@ -7,18 +7,22 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>${artifactId}-app</artifactId>
+    <artifactId>${rootArtifactId}-app</artifactId>
 
     <packaging>jar</packaging>
 
     <dependencies>
-        <!--  modules 本项目的所有模块!! -->
+        <!--  modules  -->
         <dependency>
             <groupId>${groupId}</groupId>
-            <artifactId>${artifactId}-core</artifactId>
+            <artifactId>${rootArtifactId}-core</artifactId>
             <version>${parent.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>${groupId}</groupId>
+            <artifactId>${rootArtifactId}-infra-example</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
         <!-- Logging -->
         <dependency>
             <groupId>ch.qos.logback</groupId>

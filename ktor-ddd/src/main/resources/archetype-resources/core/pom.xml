@@ -7,7 +7,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>${artifactId}-core</artifactId>
+    <artifactId>${rootArtifactId}-core</artifactId>
     <properties>
         <kotlin.version>1.3.61</kotlin.version>
     </properties>
