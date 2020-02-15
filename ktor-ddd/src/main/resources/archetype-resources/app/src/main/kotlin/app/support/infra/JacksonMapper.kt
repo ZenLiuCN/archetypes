@@ -7,7 +7,6 @@ import com.fasterxml.jackson.core.util.DefaultIndenter
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter
 import com.fasterxml.jackson.databind.*
 import com.fasterxml.jackson.databind.module.SimpleModule
-import com.fasterxml.jackson.dataformat.xml.*
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.fasterxml.jackson.module.kotlin.*
 import java.time.Instant
@@ -17,7 +16,6 @@ object JacksonMapper {
 	private lateinit var _mapper: ObjectMapper
 	val mapper: ObjectMapper?
 		get() = _mapper.takeIf { JacksonMapper::_mapper.isInitialized }
-	val xml: ObjectMapper by lazy { XmlMapper().apply { findAndRegisterModules() } }
 	fun initMapper(mapper: ObjectMapper) {
 		mapper.findAndRegisterModules()
 		_mapper = mapper.apply {

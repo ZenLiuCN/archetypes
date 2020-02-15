@@ -1,6 +1,4 @@
-package $
-
-{ package }.app.api.doctor
+package ${package}.app.api.doctor
 
 import io.ktor.application.*
 import io.ktor.auth.*

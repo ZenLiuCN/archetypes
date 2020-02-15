@@ -131,36 +131,6 @@
             <scope>compile</scope>
         </dependency>
     </dependencies>
-    <profiles>
-        <profile>
-            <id>prd</id>
-            <build>
-                <resources>
-                    <resource>
-                        <directory>src/main/resources</directory>
-                        <excludes>
-                            <exclude>**/*test*</exclude>
-                        </excludes>
-                    </resource>
-                </resources>
-            </build>
-        </profile>
-        <profile>
-            <id>dev</id>
-            <activation>
-            </activation>
-            <build>
-                <resources>
-                    <resource>
-                        <directory>src/main/resources</directory>
-                        <excludes>
-                            <exclude>**/*test*</exclude>
-                        </excludes>
-                    </resource>
-                </resources>
-            </build>
-        </profile>
-    </profiles>
     <build>
 
         <plugins>
