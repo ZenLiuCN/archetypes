@@ -18,4 +18,4 @@ class Tenant(
 	val departments:MutableList<Department> = mutableListOf()
 	companion object: TenantFinder()
 }
-open class TenantFinder: Finder<Long, Hospital>(Tenant::class.java)
+open class TenantFinder: Finder<Long, Tenant>(Tenant::class.java)

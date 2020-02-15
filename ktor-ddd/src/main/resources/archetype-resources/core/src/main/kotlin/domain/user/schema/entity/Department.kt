@@ -11,10 +11,10 @@ import javax.persistence.*
 class Department( //entity class
 	val name: String,
 	@ManyToOne(cascade = [CascadeType.REFRESH]) //link to Entity Hospital
-	val hospital: Hospital
+	val tenant: Tenant
 ) : DomainModel() {//inhert from base model
 	@OneToMany(cascade = [CascadeType.ALL]) //link to doctors in this department
-	val doctors: MutableList<Doctor> = mutableListOf()
+	val doctors: MutableList<User> = mutableListOf()
 	companion object : DepartmentFinder()
 }
 
