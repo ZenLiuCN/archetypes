@@ -23,9 +23,13 @@ fun Application.main() {
 	//region  ORM
 	install(Hikari)
 	install(Liquibase)
+	install(EbeanProvider) {
+		createUserProvider(0L)
+	}
 	install(EbeanORM) {
 		configEbean {
 			this.dataSource = Hikari.datasource
+			this.currentUserProvider = EbeanProvider.getCurrentUserProvider()
 		}
 	}
 	//endregion
@@ -61,7 +65,9 @@ fun Application.main() {
 	install(Authentication) {
 		token(name = "user") {
 			validate { tk ->
-				AuthService.validateToken(tk.token)//how to validate a token
+				AuthService.validateToken(tk.token)?.apply {//how to validate a token
+					EbeanProvider.setUserId(id) //userid
+				}
 			}
 		}
 	}

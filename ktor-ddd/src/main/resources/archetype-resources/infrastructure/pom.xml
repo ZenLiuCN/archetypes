@@ -14,6 +14,14 @@
         <module>example</module>
     </modules>
     <properties>
+
+        <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <kotlin.compiler.incremental>true</kotlin.compiler.incremental>
+        <kotlin.compiler.languageVersion>1.3</kotlin.compiler.languageVersion>
+        <kotlin.compiler.apiVersion>1.3</kotlin.compiler.apiVersion>
+        <kotlin.version>1.3.61</kotlin.version>
+
         <aliyun.java.sdk.version>4.1.0</aliyun.java.sdk.version>
         <aliyun.sdk.oss.version>3.8.0</aliyun.sdk.oss.version>
         <lz-string4k.version>1.0.0</lz-string4k.version>
