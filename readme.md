@@ -1,3 +1,4 @@
+[![](https://jitpack.io/v/ZenLiuCN/archetypes.svg)](https://jitpack.io/#ZenLiuCN/archetypes)
 # Just some read me again
 
 ## what's this repository?
