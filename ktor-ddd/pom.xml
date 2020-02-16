@@ -12,7 +12,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>maven-archetype</packaging>
     <name>ktor-ddd</name>
-    <description>online prescription request service</description>
+    <description>an lightweight DDD archetype package</description>
 
 
 </project>
