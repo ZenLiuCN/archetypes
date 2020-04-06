@@ -1,9 +1,11 @@
 ebean:
   test:
-    platform: h2 #, h2, postgres, mysql, oracle, sqlserver, hana, clickhouse, sqlite
+    useDocker: false # we do not use docker for testing
+    platform: postgres #, h2, postgres, mysql, oracle, sqlserver, hana, clickhouse, sqlite
     ddlMode: dropCreate # none | dropCreate | migrations | create
-    dbName: db
-  datasource:
-    db:
-      databaseUrl: jdbc:h2:mem:my_app;MODE=MYSQL;DB_CLOSE_DELAY=-1
+    dbName: ibi
+    postgres:
+      username: zen
+      password: zen
+      url: jdbc:postgresql://192.168.99.100:65432/ibi
 
