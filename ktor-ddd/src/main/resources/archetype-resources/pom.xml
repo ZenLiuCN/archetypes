@@ -56,8 +56,28 @@
 		<pgstd.version>42.2.10</pgstd.version>
 
 		<groovy.version>3.0.2</groovy.version>
-		<!-- configuration -->
+
+		<!-- jooq plugin configuration -->
 		<skip.jooq.gen>true</skip.jooq.gen>
+		<jooq.gen.skip>true</jooq.gen.skip>
+		<jooq.gen.driver>org.postgresql.Driver</jooq.gen.driver>
+		<jooq.gen.user>db_user</jooq.gen.user>
+		<jooq.gen.password>db_password</jooq.gen.password>
+		<jooq.gen.jdbc>some_jdbc_url</jooq.gen.jdbc>
+		<jooq.gen.schema>some_schema</jooq.gen.schema>
+		<jooq.gen.database>org.jooq.meta.postgres.PostgresDatabase</jooq.gen.database>
+		<jooq.gen.package>some_package</jooq.gen.package>
+		<jooq.gen.output>src/main/java</jooq.gen.output>
+		<jooq.gen.dao>false</jooq.gen.dao>
+		<jooq.gen.interface>false</jooq.gen.interface>
+		<jooq.gen.pojo>false</jooq.gen.pojo>
+		<!-- plugins -->
+
+		<build-helper-maven-plugin.version>3.0.0</build-helper-maven-plugin.version>
+		<maven-shade-plugin.version>3.2.1</maven-shade-plugin.version>
+		<maven-surefire-plugin.version>2.22.1</maven-surefire-plugin.version>
+		<exec-maven-plugin.version>1.5.0</exec-maven-plugin.version>
+		<tiles-maven-plugin.version>2.15</tiles-maven-plugin.version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -485,7 +505,7 @@
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>build-helper-maven-plugin</artifactId>
-					<version>3.0.0</version>
+					<version>${build-helper-maven-plugin.version}</version>
 					<executions>
 						<execution>
 							<id>add-source</id>
@@ -516,7 +536,7 @@
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>exec-maven-plugin</artifactId>
-					<version>1.2.1</version>
+					<version>${exec-maven-plugin.version}</version>
 					<executions>
 						<execution>
 							<goals>
@@ -555,7 +575,7 @@
 				<plugin>
 					<groupId>io.repaint.maven</groupId>
 					<artifactId>tiles-maven-plugin</artifactId>
-					<version>2.15</version>
+					<version>${tiles-maven-plugin.version}</version>
 					<extensions>true</extensions>
 					<configuration>
 						<tiles>
@@ -567,7 +587,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-shade-plugin</artifactId>
-					<version>3.2.1</version>
+					<version>${maven-shade-plugin.version}</version>
 					<configuration>
 						<transformers>
 							<transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
@@ -584,6 +604,75 @@
 							</goals>
 						</execution>
 					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.jooq</groupId>
+					<artifactId>jooq-codegen-maven</artifactId>
+					<version>${jooq.version}</version>
+					<executions>
+						<execution>
+							<id>jooq-codegen</id>
+							<phase>generate-sources</phase>
+							<goals>
+								<goal>generate</goal>
+							</goals>
+						</execution>
+					</executions>
+					<dependencies>
+						<dependency>
+							<groupId>org.postgresql</groupId>
+							<artifactId>postgresql</artifactId>
+							<version>${pgstd.version}</version>
+						</dependency>
+						<dependency>
+							<groupId>mysql</groupId>
+							<artifactId>mysql-connector-java</artifactId>
+							<version>${mysql.version}</version>
+						</dependency>
+					</dependencies>
+					<configuration>
+						<skip>${jooq.gen.skip}</skip>
+						<logging>INFO</logging>
+						<jdbc>
+							<driver>${jooq.gen.driver}</driver>
+							<url>${jooq.gen.jdbc}</url>
+							<user>${jooq.gen.user}</user>
+							<password>${jooq.gen.password}</password>
+						</jdbc>
+						<generator>
+							<name>org.jooq.codegen.JavaGenerator</name>
+							<database>
+								<name>${jooq.gen.database}</name>
+								<includes>.*</includes>
+								<inputSchema>${jooq.gen.schema}</inputSchema>
+								<unsignedTypes>false</unsignedTypes>
+								<outputSchemaToDefault>true</outputSchemaToDefault>
+								<forcedTypes>
+									<!-- Convert tinyint to boolean -->
+									<forcedType>
+										<name>BOOLEAN</name>
+										<includeTypes>(?i:TINYINT)</includeTypes>
+										<objectType>ALL</objectType>
+									</forcedType>
+								</forcedTypes>
+							</database>
+							<generate>
+								<daos>${jooq.gen.dao}</daos>
+								<interfaces>${jooq.gen.interface}</interfaces>
+								<pojos>${jooq.gen.pojo}</pojos>
+								<javaTimeTypes>true</javaTimeTypes>
+								<springAnnotations>false</springAnnotations>
+								<generatedAnnotation>false</generatedAnnotation>
+							</generate>
+							<target>
+								<packageName>${jooq.gen.package}</packageName>
+								<directory>${jooq.gen.output}</directory>
+							</target>
+							<!--   <strategy>
+								   <name>io.github.jklingsporn.vertx.jooq.generate.VertxGeneratorStrategy</name>
+							   </strategy>-->
+						</generator>
+					</configuration>
 				</plugin>
 			</plugins>
 		</pluginManagement>
