@@ -2,6 +2,11 @@
 <archetype-descriptor xsi:schemaLocation="https://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.1.0 http://maven.apache.org/xsd/archetype-descriptor-1.1.0.xsd" name="eps-lite"
     xmlns="https://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.1.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <requiredProperties>
+        <requiredProperty key="package">
+            <defaultValue>${groupId}</defaultValue>
+        </requiredProperty>
+    </requiredProperties>
   <fileSets>
     <fileSet encoding="UTF-8">
       <directory></directory>
@@ -61,13 +66,43 @@
                 <include>**/*.conf</include>
               </includes>
             </fileSet>
-            <fileSet  packaged="true" encoding="UTF-8">
+            <fileSet  packaged="true"  filtered="true" encoding="UTF-8">
               <directory>src/test/kotlin</directory>
               <includes>
                 <include>**/*.kt</include>
               </includes>
             </fileSet>
 
+          </fileSets>
+        </module>
+        <module id="application" dir="application" name="application">
+          <fileSets>
+            <fileSet encoding="UTF-8" filtered="true">
+              <directory>src/main/resources</directory>
+              <includes>
+                <include>**/*.yml</include>
+                <include>**/*.conf</include>
+              </includes>
+            </fileSet>
+            <fileSet packaged="true" filtered="true" encoding="UTF-8">
+              <directory>src/main/kotlin</directory>
+              <includes>
+                <include>**/*.kt</include>
+              </includes>
+            </fileSet>
+            <fileSet encoding="UTF-8">
+              <directory>src/test/resources</directory>
+              <includes>
+                <include>**/*.yml</include>
+                <include>**/*.conf</include>
+              </includes>
+            </fileSet>
+            <fileSet  packaged="true"  filtered="true" encoding="UTF-8">
+              <directory>src/test/kotlin</directory>
+              <includes>
+                <include>**/*.kt</include>
+              </includes>
+            </fileSet>
           </fileSets>
         </module>
       </modules>

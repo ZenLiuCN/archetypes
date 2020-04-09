@@ -14,10 +14,9 @@
         <kotlin.compiler.incremental>true</kotlin.compiler.incremental>
         <kotlin.compiler.languageVersion>1.3</kotlin.compiler.languageVersion>
         <kotlin.compiler.apiVersion>1.3</kotlin.compiler.apiVersion>
-        <kotlin.version>1.3.70</kotlin.version>
+        <kotlin.version>1.3.71</kotlin.version>
     </properties>
     <dependencies>
-
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-reflect</artifactId>
@@ -40,17 +39,14 @@
             <artifactId>querybean-generator</artifactId>
             <scope>provided</scope>
         </dependency>
-
         <dependency>
             <groupId>com.github.ZenLiuCN</groupId>
             <artifactId>bsonid</artifactId>
         </dependency>
-
         <dependency>
             <groupId>com.github.ZenLiuCN</groupId>
             <artifactId>dictionary-translator</artifactId>
         </dependency>
-
         <dependency>
             <groupId>com.fasterxml.jackson.module</groupId>
             <artifactId>jackson-module-kotlin</artifactId>

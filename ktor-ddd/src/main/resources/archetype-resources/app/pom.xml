@@ -13,17 +13,6 @@
 	<dependencies>
 		<!--  modules 本项目的所有模块 -->
 
-		<!--adapter -->
-		<dependency>
-			<groupId>${groupId}</groupId>
-			<artifactId>${rootArtifactId}-core</artifactId>
-			<version>${project.parent.version}</version>
-		</dependency>
-		<!-- groovy -->
-		<dependency>
-			<groupId>org.codehaus.groovy</groupId>
-			<artifactId>groovy-jsr223</artifactId>
-		</dependency>
 		<!-- Logging -->
 		<dependency>
 			<groupId>ch.qos.logback</groupId>

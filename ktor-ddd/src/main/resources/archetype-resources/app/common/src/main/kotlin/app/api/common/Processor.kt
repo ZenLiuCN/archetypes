@@ -6,7 +6,6 @@ package ${package}.app.api.common
 import ${package}.app.api.dto.*
 import ${package}.app.support.infra.*
 import ${package}.app.support.util.*
-import ${package}.domain.common.*
 import io.ktor.application.*
 import io.ktor.http.*
 import io.ktor.request.*
@@ -19,9 +18,9 @@ import org.slf4j.*
  * 预处理器
  */
 object ApiProcessor {
-	internal var errorMapper: ((DomainError) -> String)? = null
+	internal var errorMapper: ((Throwable) -> Pair<String,HttpStatusCode>)? = null
 	internal var responseWithDTO: Boolean = false
-	fun setErrorMapper(mapper: ((DomainError) -> String)?) {
+	fun setErrorMapper(mapper: ((Throwable) -> Pair<String,HttpStatusCode>)?) {
 		errorMapper = mapper
 	}
 
@@ -154,19 +153,11 @@ inline fun Any?.asRespond(): Pair<HttpStatusCode?, Any?> = when (this) {
 suspend fun PipelineContext<Unit, ApplicationCall>.responseExceptionGenerator(ex: Throwable) = kotlin.run {
 	when (ex) {
 		is ErrorStatus -> call.respond(ex.status.code, ex)
-		is DomainError -> { //领域错误处理
-			logger.warn("error for business: ${call.request.path()} :${ex.message}")
-			val message = ApiProcessor.errorMapper?.invoke(ex) ?: "操作失败,请重试"
-			call.respond(BusinessErrorStatus, message)
-		}
 		else -> {
 			logger.error("error on api: ${call.request.path()} :${ex.message}", ex)
-			call.respond(
-				TestUtil.isDebug().takeIf { it }
-					?.let { HttpStatusCode.InternalServerError }
-					?: HttpStatusCode.InternalServerError
-				, mapOf<String, String>()
-			)
+			logger.warn("error for business: ${call.request.path()} :${ex.message}")
+			val (message,status) = ApiProcessor.errorMapper?.invoke(ex) ?: ("操作失败,请重试" to null)
+			call.respond(status?:BusinessErrorStatus, message)
 		}
 	}
 }

@@ -10,13 +10,7 @@
 	<artifactId>${rootArtifactId}-app-common</artifactId>
 
 	<packaging>jar</packaging>
-	<dependencies>
-		<dependency>
-			<groupId>${groupId}</groupId>
-			<artifactId>${rootArtifactId}-app</artifactId>
-			<version>${project.parent.version}</version>
-		</dependency>
-	</dependencies>
+
 
 
 </project>
