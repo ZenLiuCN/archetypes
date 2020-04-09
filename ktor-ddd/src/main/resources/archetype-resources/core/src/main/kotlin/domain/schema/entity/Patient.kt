@@ -1,7 +1,7 @@
-package ${package}.domain.basic.schema.entity
+package ${package}.domain.schema.entity
 
-import ${package}.domain.basic.schema.element.*
-import ${package}.domain.basic.schema.entity.query.*
+import ${package}.domain.schema.element.*
+import ${package}.domain.schema.entity.query.*
 import ${package}.domain.common.*
 import ${package}.domain.common.element.exception.*
 import javax.persistence.*

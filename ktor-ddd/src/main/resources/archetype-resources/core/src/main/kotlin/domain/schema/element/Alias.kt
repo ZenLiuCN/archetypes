@@ -1,5 +1,5 @@
 
-package ${package}.domain.basic.schema.element
+package ${package}.domain.schema.element
 
 import java.math.*
 
