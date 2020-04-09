@@ -1,4 +1,4 @@
-package ${package}.app.api.rest
+package ${package}.app.api
 
 import io.ktor.routing.Routing
 
