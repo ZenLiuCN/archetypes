@@ -14,7 +14,7 @@
 		<kotlin.compiler.languageVersion>1.3</kotlin.compiler.languageVersion>
 		<kotlin.compiler.apiVersion>1.3</kotlin.compiler.apiVersion>
 		<!--        versions -->
-		<kotlin.version>1.3.71</kotlin.version>
+		<kotlin.version>1.3.72</kotlin.version>
 
 		<ebean.version>12.1.13</ebean.version>
 		<ebean.tile.kt.version>1.6</ebean.tile.kt.version>
@@ -81,6 +81,23 @@
 	</properties>
 	<dependencyManagement>
 		<dependencies>
+			<!-- bom -->
+			<!-- kotlin-bom -->
+			<dependency>
+				<groupId>org.jetbrains.kotlin</groupId>
+				<artifactId>kotlin-bom</artifactId>
+				<version>${kotlin.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<!-- kotlin-bom -->
+			<dependency>
+				<groupId>io.ktor</groupId>
+				<artifactId>ktor-bom</artifactId>
+				<type>pom</type>
+				<scope>import</scope>
+				<version>${ktor.version}</version>
+			</dependency>
 			<!-- kotlin utils -->
 			<dependency>
 				<groupId>com.github.ZenLiuCN.kotlin-util</groupId>
@@ -93,14 +110,11 @@
 				<version>${ktolin-utils.version}</version>
 			</dependency>
 			<!-- database drivers -->
-
 			<dependency>
 				<groupId>mysql</groupId>
 				<artifactId>mysql-connector-java</artifactId>
 				<version>${mysql.version}</version>
 			</dependency>
-
-
 			<dependency>
 				<groupId>com.impossibl.pgjdbc-ng</groupId>
 				<artifactId>pgjdbc-ng</artifactId>
@@ -111,11 +125,15 @@
 				<artifactId>sqlite-jdbc</artifactId>
 				<version>${sqlite.version}</version>
 			</dependency>
-
 			<dependency>
 				<groupId>org.postgresql</groupId>
 				<artifactId>postgresql</artifactId>
 				<version>${pgstd.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.h2database</groupId>
+				<artifactId>h2</artifactId>
+				<version>1.4.200</version>
 			</dependency>
 			<!-- slf4j api -->
 			<dependency>
@@ -123,13 +141,13 @@
 				<artifactId>slf4j-api</artifactId>
 				<version>1.7.30</version>
 			</dependency>
-			<!--            opencsv-->
+			<!-- opencsv-->
 			<dependency>
 				<groupId>com.opencsv</groupId>
 				<artifactId>opencsv</artifactId>
 				<version>${opencsv.version}</version>
 			</dependency>
-			<!--            jooq-->
+			<!--  jooq-->
 			<dependency>
 				<groupId>org.jooq</groupId>
 				<artifactId>jooq</artifactId>
@@ -195,7 +213,6 @@
 						<artifactId>kotlin-stdlib-common</artifactId>
 					</exclusion>
 				</exclusions>
-				<version>${ktor.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>io.ktor</groupId>
@@ -230,12 +247,10 @@
 						<artifactId>kotlin-stdlib-common</artifactId>
 					</exclusion>
 				</exclusions>
-				<version>${ktor.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>io.ktor</groupId>
 				<artifactId>ktor-server-test-host</artifactId>
-				<version>${ktor.version}</version>
 				<scope>test</scope>
 				<exclusions>
 					<exclusion>
@@ -272,14 +287,11 @@
 			<dependency>
 				<groupId>io.ktor</groupId>
 				<artifactId>ktor-auth</artifactId>
-				<version>${ktor.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>io.ktor</groupId>
 				<artifactId>ktor-auth-jwt</artifactId>
-				<version>${ktor.version}</version>
 			</dependency>
-
 			<!-- ebean -->
 			<dependency>
 				<groupId>io.ebean</groupId>
@@ -309,21 +321,11 @@
 				<version>${ebean.version}</version>
 				<scope>test</scope>
 			</dependency>
-			<!-- features -->
+			<!-- ktor features -->
 			<dependency>
 				<groupId>com.github.ZenLiuCN.ktor-features</groupId>
 				<artifactId>ez-liquibase</artifactId>
 				<version>${features.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.liquibase</groupId>
-				<artifactId>liquibase-core</artifactId>
-				<version>${liquibase.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.yaml</groupId>
-				<artifactId>snakeyaml</artifactId>
-				<version>${snakeyaml.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.github.ZenLiuCN.ktor-features</groupId>
@@ -336,43 +338,63 @@
 				<version>${features.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.zaxxer</groupId>
-				<artifactId>HikariCP</artifactId>
-				<version>${hikari.version}</version>
-			</dependency>
-			<dependency>
 				<groupId>com.github.ZenLiuCN.ktor-features</groupId>
 				<artifactId>ez-logback</artifactId>
 				<version>${features.version}</version>
 			</dependency>
-
 			<dependency>
 				<groupId>com.github.ZenLiuCN.ktor-features</groupId>
 				<artifactId>ez-caffeine</artifactId>
 				<version>${features.version}</version>
 			</dependency>
-
 			<dependency>
 				<groupId>com.github.ZenLiuCN.ktor-features</groupId>
 				<artifactId>ez-auth</artifactId>
 				<version>${features.version}</version>
 			</dependency>
-
+			<!-- bosnId -->
+			<dependency>
+				<groupId>com.github.ZenLiuCN</groupId>
+				<artifactId>bsonid</artifactId>
+				<version>2.0.7</version>
+			</dependency>
+			<dependency>
+				<groupId>com.github.ZenLiuCN</groupId>
+				<artifactId>dictionary-translator</artifactId>
+				<version>1.0.1</version>
+			</dependency>
+			<!-- liquibase -->
+			<dependency>
+				<groupId>org.liquibase</groupId>
+				<artifactId>liquibase-core</artifactId>
+				<version>${liquibase.version}</version>
+			</dependency>
+			<!-- snakeYaml -->
+			<dependency>
+				<groupId>org.yaml</groupId>
+				<artifactId>snakeyaml</artifactId>
+				<version>${snakeyaml.version}</version>
+			</dependency>
+			<!-- hikariCP -->
+			<dependency>
+				<groupId>com.zaxxer</groupId>
+				<artifactId>HikariCP</artifactId>
+				<version>${hikari.version}</version>
+			</dependency>
+			<!-- caffeine -->
 			<dependency>
 				<groupId>com.github.ben-manes.caffeine</groupId>
 				<artifactId>caffeine</artifactId>
 				<version>${caffeine.version}</version>
 			</dependency>
-
+			<!-- kotlinx -->
 			<dependency>
 				<groupId>org.jetbrains.kotlinx</groupId>
 				<artifactId>kotlinx-coroutines-core</artifactId>
 				<version>${kotlinx-coroutines.version}</version>
 			</dependency>
 
-
 			<!-- OkHttp -->
-			<!-- https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp -->
 			<dependency>
 				<groupId>com.squareup.okhttp3</groupId>
 				<artifactId>okhttp</artifactId>
@@ -424,36 +446,7 @@
 				<artifactId>jackson-dataformat-xml</artifactId>
 				<version>${jackson.version}</version>
 			</dependency>
-			<!-- kt-->
-			<dependency>
-				<groupId>org.jetbrains.kotlin</groupId>
-				<artifactId>kotlin-stdlib-jdk8</artifactId>
-				<version>${kotlin.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.jetbrains.kotlin</groupId>
-				<artifactId>kotlin-test</artifactId>
-				<version>${kotlin.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.jetbrains.kotlin</groupId>
-				<artifactId>kotlin-reflect</artifactId>
-				<version>${kotlin.version}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>com.github.ZenLiuCN</groupId>
-				<artifactId>bsonid</artifactId>
-				<version>2.0.7</version>
-			</dependency>
-
-			<dependency>
-				<groupId>com.github.ZenLiuCN</groupId>
-				<artifactId>dictionary-translator</artifactId>
-				<version>1.0.1</version>
-			</dependency>
-			<!-- https://mvnrepository.com/artifact/org.codehaus.groovy/groovy-json -->
+     		<!-- groovy -->
 			<dependency>
 				<groupId>org.codehaus.groovy</groupId>
 				<artifactId>groovy-json</artifactId>
@@ -463,13 +456,6 @@
 				<groupId>org.codehaus.groovy</groupId>
 				<artifactId>groovy-jsr223</artifactId>
 				<version>${groovy.version}</version>
-			</dependency>
-			<!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
-			<dependency>
-				<groupId>com.h2database</groupId>
-				<artifactId>h2</artifactId>
-				<version>1.4.200</version>
-				<scope>test</scope>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -584,27 +570,7 @@
 						</tiles>
 					</configuration>
 				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-shade-plugin</artifactId>
-					<version>${maven-shade-plugin.version}</version>
-					<configuration>
-						<transformers>
-							<transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
-							<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-								<mainClass>io.ktor.server.netty.EngineMain</mainClass>
-							</transformer>
-						</transformers>
-					</configuration>
-					<executions>
-						<execution>
-							<phase>package</phase>
-							<goals>
-								<goal>shade</goal>
-							</goals>
-						</execution>
-					</executions>
-				</plugin>
+
 				<plugin>
 					<groupId>org.jooq</groupId>
 					<artifactId>jooq-codegen-maven</artifactId>
@@ -648,7 +614,7 @@
 								<unsignedTypes>false</unsignedTypes>
 								<outputSchemaToDefault>true</outputSchemaToDefault>
 								<forcedTypes>
-									<!-- Convert tinyint to boolean -->
+									<!-- //TODO:  Convert tinyint to boolean -->
 									<forcedType>
 										<name>BOOLEAN</name>
 										<includeTypes>(?i:TINYINT)</includeTypes>
@@ -668,9 +634,6 @@
 								<packageName>${jooq.gen.package}</packageName>
 								<directory>${jooq.gen.output}</directory>
 							</target>
-							<!--   <strategy>
-								   <name>io.github.jklingsporn.vertx.jooq.generate.VertxGeneratorStrategy</name>
-							   </strategy>-->
 						</generator>
 					</configuration>
 				</plugin>
